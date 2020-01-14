@@ -50,6 +50,42 @@ namespace GalileuszSchool.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("GalileuszSchool.Models.LessonPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("friday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("monday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("saturday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("sunday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("thursday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("time")
+                        .HasColumnType("int");
+
+                    b.Property<int>("tuesday")
+                        .HasColumnType("int");
+
+                    b.Property<int>("wednesday")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LessonPlan");
+                });
+
             modelBuilder.Entity("GalileuszSchool.Models.Page", b =>
                 {
                     b.Property<int>("Id")

@@ -14,6 +14,31 @@ namespace GalileuszSchool.Models
         {
             using (var context = new GalileuszSchoolContext(serviceProvider.GetRequiredService<DbContextOptions<GalileuszSchoolContext>>()))
             {
+                context.Database.EnsureCreated();
+                if (context.LessonPlan.Any())
+                {
+                    return;
+                }
+
+                LessonPlan[] lessonPlan = new LessonPlan[23];
+                for (int i = 0; i < 23;)
+                {
+                    lessonPlan[i] = new LessonPlan { time = i};
+
+                    //lessonPlan[i] = new LessonPlan { time = i, monday = 1, tuesday = 2, wednesday = 3, thursday = 4, friday = 5, saturday = 6, sunday = 7 };
+                    i++;
+                    }
+                context.LessonPlan.AddRange(lessonPlan);
+                context.SaveChanges();
+
+
+
+
+
+
+
+
+
                 if (context.Pages.Any())
                 {
                     return;
