@@ -30,14 +30,11 @@ namespace GalileuszSchool.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    time = table.Column<int>(nullable: false),
-                    monday = table.Column<int>(nullable: false),
-                    tuesday = table.Column<int>(nullable: false),
-                    wednesday = table.Column<int>(nullable: false),
-                    thursday = table.Column<int>(nullable: false),
-                    friday = table.Column<int>(nullable: false),
-                    saturday = table.Column<int>(nullable: false),
-                    sunday = table.Column<int>(nullable: false)
+                    classroom = table.Column<int>(nullable: false),
+                    day = table.Column<int>(nullable: false),
+                    startTime = table.Column<int>(nullable: false),
+                    stopTime = table.Column<int>(nullable: false),
+                    Course = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -24,6 +24,7 @@ namespace GalileuszSchool.Controllers
 
         public IActionResult Privacy()
         {
+            Debug.WriteLine("ll");
             return View();
         }
 

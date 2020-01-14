@@ -1,35 +1,24 @@
-﻿using System;
+﻿using GalileuszSchool.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GalileuszSchool.Models
+namespace GalileuszSchool.Areas.Admin.ViewModels
 {
-
-    public enum Days
+    public class LessonPlanViewModel
     {
-        Mondeay,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
 
-    }
-    public class LessonPlan
-    {
         public int Id { get; set; }
 
         [Required(ErrorMessage = "--")]
         public int classroom { get; set; }
 
         [Required(ErrorMessage = "--")]
-        public Days day { get; set; }
 
-        [Required(ErrorMessage = "--")]
         public int startTime { get; set; }
 
         [Required(ErrorMessage = "--")]
@@ -38,7 +27,9 @@ namespace GalileuszSchool.Models
         //[Required(ErrorMessage = "--")]
         //[ForeignKey("CourseId")]
         //public virtual Course Course { get; set; }
-        public virtual int course { get; set; }
+        public virtual int Course { get; set; }
 
+        public int dayId { set; get; }
+        public IEnumerable<SelectListItem> day { get; set; }
     }
 }
