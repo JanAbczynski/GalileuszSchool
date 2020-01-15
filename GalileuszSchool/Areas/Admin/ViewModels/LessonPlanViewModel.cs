@@ -27,7 +27,7 @@ namespace GalileuszSchool.Areas.Admin.ViewModels
         //[Required(ErrorMessage = "--")]
         //[ForeignKey("CourseId")]
         //public virtual Course Course { get; set; }
-        public virtual int Course { get; set; }
+        public virtual int course { get; set; }
 
         public int dayId { set; get; }
         public IEnumerable<SelectListItem> day { get; set; }

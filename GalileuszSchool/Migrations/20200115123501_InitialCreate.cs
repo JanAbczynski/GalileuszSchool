@@ -32,9 +32,10 @@ namespace GalileuszSchool.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     classroom = table.Column<int>(nullable: false),
                     day = table.Column<int>(nullable: false),
+                    dayId = table.Column<int>(nullable: false),
                     startTime = table.Column<int>(nullable: false),
                     stopTime = table.Column<int>(nullable: false),
-                    Course = table.Column<int>(nullable: false)
+                    course = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -58,7 +58,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,classroom,day,startTime,stopTime, Course")] LessonPlan lessonPlan)
+        public async Task<IActionResult> Create([Bind("classroom,dayId,startTime,stopTime, course")] LessonPlan lessonPlan)
         {
             var v1 = lessonPlan.classroom;
             var v2 = lessonPlan.course;
@@ -66,6 +66,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
             var v4 = lessonPlan.Id;
             var v5 = lessonPlan.startTime;
             var v6 = lessonPlan.stopTime;
+            var v7 = lessonPlan.dayId;
 
 
             if (ModelState.IsValid)

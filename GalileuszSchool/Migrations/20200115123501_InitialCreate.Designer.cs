@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalileuszSchool.Migrations
 {
     [DbContext(typeof(GalileuszSchoolContext))]
-    [Migration("20200114163418_InitialCreate")]
+    [Migration("20200115123501_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,13 +59,16 @@ namespace GalileuszSchool.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Course")
-                        .HasColumnType("int");
-
                     b.Property<int>("classroom")
                         .HasColumnType("int");
 
+                    b.Property<int>("course")
+                        .HasColumnType("int");
+
                     b.Property<int>("day")
+                        .HasColumnType("int");
+
+                    b.Property<int>("dayId")
                         .HasColumnType("int");
 
                     b.Property<int>("startTime")

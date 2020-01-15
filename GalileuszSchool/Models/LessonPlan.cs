@@ -10,14 +10,16 @@ namespace GalileuszSchool.Models
 
     public enum Days
     {
-        Mondeay,
-        Tuesday,
+        Monday = 0,
+        Tuesday = 1,
         Wednesday,
         Thursday,
         Friday,
         Saturday,
         Sunday
 
+
+                  
     }
     public class LessonPlan
     {
@@ -29,6 +31,9 @@ namespace GalileuszSchool.Models
         [Required(ErrorMessage = "--")]
         public Days day { get; set; }
 
+        //todo: remove dayId and value from html dayId will be passed to field 'day'. In result day alwaeys will be Monday
+        public int dayId { get; set; }
+
         [Required(ErrorMessage = "--")]
         public int startTime { get; set; }
 
@@ -38,7 +43,8 @@ namespace GalileuszSchool.Models
         //[Required(ErrorMessage = "--")]
         //[ForeignKey("CourseId")]
         //public virtual Course Course { get; set; }
-        public virtual int course { get; set; }
+
+        public int course { get; set; }
 
     }
 }
