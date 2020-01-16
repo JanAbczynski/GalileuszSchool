@@ -24,7 +24,11 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // GET: Admin/LessonPlans
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LessonPlan.ToListAsync());
+            var v1 = _context.LessonPlan.ToList();
+            return View(await _context.LessonPlan.Include(x => x.Course).ToListAsync());
+
+
+            //return View(await context.Teachers.OrderByDescending(x => x.Id).Include(x => x.Course).ToListAsync());
         }
 
         // GET: Admin/LessonPlans/Details/5
@@ -48,6 +52,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // GET: Admin/LessonPlans/Create
         public IActionResult Create()
         {
+            ViewBag.CourseId = new SelectList(_context.Courses.OrderBy(x => x.Id), "Id", "Name");
 
 
             return View();
@@ -58,19 +63,15 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("classroom,dayId,startTime,stopTime, course")] LessonPlan lessonPlan)
+        public async Task<IActionResult> Create( LessonPlan lessonPlan)
+            //[Bind("classroom,dayId,startTime,stopTime, course")]
         {
-            var v1 = lessonPlan.classroom;
-            var v2 = lessonPlan.course;
-            var v3 = lessonPlan.day;
-            var v4 = lessonPlan.Id;
-            var v5 = lessonPlan.startTime;
-            var v6 = lessonPlan.stopTime;
-            var v7 = lessonPlan.dayId;
 
 
             if (ModelState.IsValid)
             {
+            lessonPlan.day = (Days)lessonPlan.dayId;
+
                 _context.Add(lessonPlan);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,7 +100,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,classroom,day,startTime,stopTime")] LessonPlan lessonPlan)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,classroom,dayId,startTime,stopTime, course")] LessonPlan lessonPlan)
         {
             if (id != lessonPlan.Id)
             {
@@ -108,6 +109,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                lessonPlan.day = (Days)lessonPlan.dayId;
                 try
                 {
                     _context.Update(lessonPlan);

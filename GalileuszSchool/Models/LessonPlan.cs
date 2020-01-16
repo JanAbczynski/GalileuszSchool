@@ -10,8 +10,8 @@ namespace GalileuszSchool.Models
 
     public enum Days
     {
-        Monday = 0,
-        Tuesday = 1,
+        Monday,
+        Tuesday,
         Wednesday,
         Thursday,
         Friday,
@@ -40,11 +40,12 @@ namespace GalileuszSchool.Models
         [Required(ErrorMessage = "--")]
         public int stopTime { get; set; }
 
-        //[Required(ErrorMessage = "--")]
-        //[ForeignKey("CourseId")]
-        //public virtual Course Course { get; set; }
+        public int CourseId { get; set; }
 
-        public int course { get; set; }
+        [ForeignKey("CourseId")]
+        public virtual Course Course { get; set; }
+
+
 
     }
 }

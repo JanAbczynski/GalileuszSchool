@@ -57,10 +57,10 @@ namespace GalileuszSchool.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("classroom")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("course")
+                    b.Property<int>("classroom")
                         .HasColumnType("int");
 
                     b.Property<int>("day")
@@ -76,6 +76,8 @@ namespace GalileuszSchool.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("LessonPlan");
                 });
@@ -171,6 +173,15 @@ namespace GalileuszSchool.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("GalileuszSchool.Models.LessonPlan", b =>
+                {
+                    b.HasOne("GalileuszSchool.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GalileuszSchool.Models.Student", b =>

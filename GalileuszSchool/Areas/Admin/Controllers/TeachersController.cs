@@ -22,6 +22,7 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         //get Admin/Teachers
         public async Task<IActionResult> Index()
         {
+            var v2 = context.Teachers.ToList();
             return View(await context.Teachers.OrderByDescending(x => x.Id).Include(x => x.Course).ToListAsync());
         }
 

@@ -25,24 +25,6 @@ namespace GalileuszSchool.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LessonPlan",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    classroom = table.Column<int>(nullable: false),
-                    day = table.Column<int>(nullable: false),
-                    dayId = table.Column<int>(nullable: false),
-                    startTime = table.Column<int>(nullable: false),
-                    stopTime = table.Column<int>(nullable: false),
-                    course = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonPlan", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Pages",
                 columns: table => new
                 {
@@ -56,6 +38,30 @@ namespace GalileuszSchool.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LessonPlan",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    classroom = table.Column<int>(nullable: false),
+                    day = table.Column<int>(nullable: false),
+                    dayId = table.Column<int>(nullable: false),
+                    startTime = table.Column<int>(nullable: false),
+                    stopTime = table.Column<int>(nullable: false),
+                    CourseId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LessonPlan", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LessonPlan_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,6 +110,11 @@ namespace GalileuszSchool.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LessonPlan_CourseId",
+                table: "LessonPlan",
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_CourseId",
