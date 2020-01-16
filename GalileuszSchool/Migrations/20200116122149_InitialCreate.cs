@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GalileuszSchool.Migrations
 {
@@ -50,7 +51,7 @@ namespace GalileuszSchool.Migrations
                     day = table.Column<int>(nullable: false),
                     dayId = table.Column<int>(nullable: false),
                     startTime = table.Column<int>(nullable: false),
-                    stopTime = table.Column<int>(nullable: false),
+                    stopTime = table.Column<DateTime>(nullable: false),
                     CourseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

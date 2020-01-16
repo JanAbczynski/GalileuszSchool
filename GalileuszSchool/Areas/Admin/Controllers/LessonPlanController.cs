@@ -82,16 +82,19 @@ namespace GalileuszSchool.Areas.Admin.Controllers
         // GET: Admin/LessonPlans/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            LessonPlan lessonPlan = await _context.LessonPlan.FindAsync(id);
             if (id == null)
             {
                 return NotFound();
             }
 
-            var lessonPlan = await _context.LessonPlan.FindAsync(id);
+            //var lessonPlan = await _context.LessonPlan.FindAsync(id);
             if (lessonPlan == null)
             {
                 return NotFound();
             }
+
+            ViewBag.CourseId = new SelectList(_context.Courses.OrderBy(x => x.Sorting), "Id", "Name", lessonPlan.CourseId);         
             return View(lessonPlan);
         }
 

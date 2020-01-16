@@ -38,7 +38,7 @@ namespace GalileuszSchool.Models
         public int startTime { get; set; }
 
         [Required(ErrorMessage = "--")]
-        public int stopTime { get; set; }
+        public DateTime stopTime { get; set; }
 
         public int CourseId { get; set; }
 
